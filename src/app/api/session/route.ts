@@ -62,22 +62,24 @@ export async function GET(req: Request) {
   if (source !== 'all' && source !== 'wrong') {
     return NextResponse.json({ error: 'invalid source' }, { status: 400 });
   }
-  if (!(VALID_DIRECTIONS as readonly string[]).includes(direction ?? '')) {
+  const d = (direction ?? '') as string;
+  if (!(VALID_DIRECTIONS as readonly string[]).includes(d)) {
     return NextResponse.json({ error: 'invalid direction' }, { status: 400 });
   }
+  const dir = d as DirectionParam;
   if (sizeRaw !== 'all' && (!sizeRaw || !/^\d+$/.test(sizeRaw))) {
     return NextResponse.json({ error: 'invalid size' }, { status: 400 });
   }
 
   let ids: number[];
   if (source === 'all') {
-    if (direction !== 'mixed' && KANA_REQUIRED.has(direction)) {
+    if (dir !== 'mixed' && KANA_REQUIRED.has(dir)) {
       ids = getKanaWordIds();
     } else {
       ids = getAllWordIds();
     }
   } else {
-    const filter: Direction | 'all' = direction === 'mixed' ? 'all' : direction;
+    const filter: Direction | 'all' = dir === 'mixed' ? 'all' : dir;
     ids = getWrongBookWordIds(filter);
   }
 
@@ -91,14 +93,14 @@ export async function GET(req: Request) {
     if (!word) continue;
 
     let d: Direction;
-    if (direction === 'mixed') {
+    if (dir === 'mixed') {
       const validDirs = ALL_DIRECTIONS.filter(
         (dir) => !KANA_REQUIRED.has(dir) || (word.kana && word.kana.length > 0),
       );
       if (validDirs.length === 0) continue;
       d = validDirs[Math.floor(Math.random() * validDirs.length)];
     } else {
-      d = direction;
+      d = dir;
     }
 
     questions.push({

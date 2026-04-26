@@ -16,11 +16,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'password required' }, { status: 400 });
   }
   const { password } = body as { password: string };
-  if (!verifyPassword(password)) {
+  if (!(await verifyPassword(password))) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
   const expiresAt = Date.now() + COOKIE_TTL_MS;
-  const token = signToken(expiresAt);
+  const token = await signToken(expiresAt);
   const res = NextResponse.json({ ok: true });
   res.cookies.set(COOKIE_NAME, token, {
     httpOnly: true,

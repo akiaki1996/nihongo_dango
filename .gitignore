@@ -8,3 +8,5 @@ data/
 .env.local
 .worktrees/
 dist-seed/
+.claude/
+.playwright-mcp/

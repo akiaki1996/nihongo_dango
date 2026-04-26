@@ -6,9 +6,9 @@ export const config = {
   matcher: ['/((?!_next|favicon.ico|login|api/login).*)'],
 };
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const token = req.cookies.get(COOKIE_NAME)?.value;
-  if (token && verifyToken(token)) {
+  if (token && (await verifyToken(token))) {
     return NextResponse.next();
   }
   if (req.nextUrl.pathname.startsWith('/api')) {

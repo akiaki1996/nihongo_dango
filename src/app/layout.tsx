@@ -1,7 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: '日语单词练习',
+  title: 'にほんご — 日语单词练习',
+  description: '个人日语单词练习工具',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
