@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "outDir": "dist-seed",
+    "paths": { "@/*": ["./src/*"] }
+  },
+  "include": [
+    "src/scripts/**/*.ts",
+    "src/lib/db.ts",
+    "src/lib/queries.ts",
+    "src/lib/wrongbook.ts"
+  ]
+}
