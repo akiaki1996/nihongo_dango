@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      APP_PASSWORD: ${APP_PASSWORD}
+      AUTH_SECRET: ${AUTH_SECRET}
+    volumes:
+      - ./data:/data
+    restart: unless-stopped
