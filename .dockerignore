@@ -1,0 +1,11 @@
+node_modules
+.next
+data
+.git
+tests
+docs
+*.md
+.env
+.env.local
+.worktrees
+dist-seed

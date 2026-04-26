@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+data/
+.env
+.env.local
+.worktrees/
+dist-seed/
