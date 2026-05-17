@@ -3,6 +3,8 @@ import { getWordById } from '@/lib/queries';
 import { applyAnswer, type Direction } from '@/lib/wrongbook';
 import { isMatch } from '@/lib/match';
 
+export const runtime = 'nodejs';
+
 const VALID_DIRECTIONS = [
   'kanji_to_kana', 'kana_to_kanji', 'jp_to_cn', 'cn_to_jp',
 ] as const;

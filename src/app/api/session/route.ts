@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { getAllWordIds, getKanaWordIds, getWrongBookWordIds, getWordById } from '@/lib/queries';
 import type { Direction } from '@/lib/wrongbook';
 
+export const runtime = 'nodejs';
+
 type Source = 'all' | 'wrong';
 type DirectionParam = Direction | 'mixed';
 
